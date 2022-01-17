@@ -6,7 +6,7 @@ COPY . /usr/src/app/
 WORKDIR /usr/src/app
 
 RUN node -v
-RUN npm install --registry=http://registry.npm.taobao.org
+RUN npm install
 RUN npm run build
 
 EXPOSE 8080
