@@ -2,13 +2,16 @@ lockfileVersion: 5.3
 
 specifiers:
   '@ant-design/icons': ^4.7.0
+  '@ant-design/pro-form': ^1.52.12
   '@ant-design/pro-layout': ^6.32.3
+  '@ant-design/pro-table': ^2.62.6
   '@types/react': ^17.0.33
   '@types/react-dom': ^17.0.10
   '@vitejs/plugin-react': ^1.0.7
   antd: ^4.18.3
   axios: ^0.24.0
   express: ^4.17.2
+  http-proxy-middleware: ^2.0.1
   less: ^4.1.2
   moment: ^2.29.1
   react: ^17.0.2
@@ -20,7 +23,9 @@ specifiers:
 
 dependencies:
   '@ant-design/icons': 4.7.0_react-dom@17.0.2+react@17.0.2
+  '@ant-design/pro-form': 1.52.12_fe8d130e25f6a6aae390c6034526cbbb
   '@ant-design/pro-layout': 6.32.5_fe8d130e25f6a6aae390c6034526cbbb
+  '@ant-design/pro-table': 2.62.6_fe8d130e25f6a6aae390c6034526cbbb
   antd: 4.18.3_react-dom@17.0.2+react@17.0.2
   axios: 0.24.0
   moment: 2.29.1
@@ -34,6 +39,7 @@ devDependencies:
   '@types/react-dom': 17.0.11
   '@vitejs/plugin-react': 1.1.4
   express: 4.17.2
+  http-proxy-middleware: 2.0.1
   less: 4.1.2
   typescript: 4.5.4
   vite: 2.7.12_less@4.1.2
@@ -64,6 +70,54 @@ packages:
       rc-util: 5.16.1_react-dom@17.0.2+react@17.0.2
       react: 17.0.2
       react-dom: 17.0.2_react@17.0.2
+    dev: false
+
+  /@ant-design/pro-field/1.31.9_fe8d130e25f6a6aae390c6034526cbbb:
+    resolution: {integrity: sha512-cLFkH180wDotAwNllColomK715C69JpDf2Y4bX7LiFDA0fwsInYoYmBokMLwwYwWKMWyszBG/m81Iw+PwSCvFQ==, tarball: '@ant-design/pro-field/download/@ant-design/pro-field-1.31.9.tgz'}
+    peerDependencies:
+      antd: 4.x
+      react: '>=16.9.0'
+    dependencies:
+      '@ant-design/icons': 4.7.0_react-dom@17.0.2+react@17.0.2
+      '@ant-design/pro-provider': 1.5.5_fe8d130e25f6a6aae390c6034526cbbb
+      '@ant-design/pro-utils': 1.32.6_fe8d130e25f6a6aae390c6034526cbbb
+      '@babel/runtime': 7.16.7
+      antd: 4.18.3_react-dom@17.0.2+react@17.0.2
+      classnames: 2.3.1
+      lodash.tonumber: 4.0.3
+      moment: 2.29.1
+      omit.js: 2.0.2
+      rc-util: 5.16.1_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-color: 2.19.3_react@17.0.2
+      swr: 1.1.0_react@17.0.2
+    transitivePeerDependencies:
+      - react-dom
+    dev: false
+
+  /@ant-design/pro-form/1.52.12_fe8d130e25f6a6aae390c6034526cbbb:
+    resolution: {integrity: sha512-CEW8VyUaSuZfMY/E1VAfg6gLBRHp8w+i9U4HoCsMDAzRsWemswi/SF0VhjG/oDqTUTeSNgPecar9vkvH0jQWgw==, tarball: '@ant-design/pro-form/download/@ant-design/pro-form-1.52.12.tgz'}
+    peerDependencies:
+      antd: 4.x
+      rc-field-form: ^1.22.0
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@ant-design/icons': 4.7.0_react-dom@17.0.2+react@17.0.2
+      '@ant-design/pro-field': 1.31.9_fe8d130e25f6a6aae390c6034526cbbb
+      '@ant-design/pro-provider': 1.5.5_fe8d130e25f6a6aae390c6034526cbbb
+      '@ant-design/pro-utils': 1.32.6_fe8d130e25f6a6aae390c6034526cbbb
+      '@babel/runtime': 7.16.7
+      '@umijs/use-params': 1.0.9_react@17.0.2
+      antd: 4.18.3_react-dom@17.0.2+react@17.0.2
+      classnames: 2.3.1
+      omit.js: 2.0.2
+      rc-resize-observer: 1.2.0_react-dom@17.0.2+react@17.0.2
+      rc-util: 5.16.1_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      use-json-comparison: 1.0.6_react@17.0.2
+      use-media-antd-query: 1.1.0_react@17.0.2
     dev: false
 
   /@ant-design/pro-layout/6.32.5_fe8d130e25f6a6aae390c6034526cbbb:
@@ -109,6 +163,33 @@ packages:
       swr: 1.1.0_react@17.0.2
     transitivePeerDependencies:
       - react-dom
+    dev: false
+
+  /@ant-design/pro-table/2.62.6_fe8d130e25f6a6aae390c6034526cbbb:
+    resolution: {integrity: sha512-3Q+ANwFicZxv5LKijxQ4kd2JhxPRk8a9VOrWHCSUgDpOoeWRp0UmE4Mb9APt13JGQt0n/U+B8ERZHktPGV1VbQ==, tarball: '@ant-design/pro-table/download/@ant-design/pro-table-2.62.6.tgz'}
+    peerDependencies:
+      antd: 4.x
+      rc-field-form: ^1.22.0
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@ant-design/icons': 4.7.0_react-dom@17.0.2+react@17.0.2
+      '@ant-design/pro-field': 1.31.9_fe8d130e25f6a6aae390c6034526cbbb
+      '@ant-design/pro-form': 1.52.12_fe8d130e25f6a6aae390c6034526cbbb
+      '@ant-design/pro-provider': 1.5.5_fe8d130e25f6a6aae390c6034526cbbb
+      '@ant-design/pro-utils': 1.32.6_fe8d130e25f6a6aae390c6034526cbbb
+      '@babel/runtime': 7.16.7
+      antd: 4.18.3_react-dom@17.0.2+react@17.0.2
+      classnames: 2.3.1
+      moment: 2.29.1
+      omit.js: 2.0.2
+      rc-util: 5.16.1_react-dom@17.0.2+react@17.0.2
+      react: 17.0.2
+      react-dom: 17.0.2_react@17.0.2
+      react-sortable-hoc: 2.0.0_react-dom@17.0.2+react@17.0.2
+      unstated-next: 1.1.0
+      use-json-comparison: 1.0.6_react@17.0.2
+      use-media-antd-query: 1.1.0_react@17.0.2
     dev: false
 
   /@ant-design/pro-utils/1.32.6_fe8d130e25f6a6aae390c6034526cbbb:
@@ -417,6 +498,14 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
+  /@icons/material/0.2.4_react@17.0.2:
+    resolution: {integrity: sha1-6QyfcXaLNzbnbX3WeD/Gwq+oi8g=, tarball: '@icons/material/download/@icons/material-0.2.4.tgz'}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      react: 17.0.2
+    dev: false
+
   /@qixian.cs/path-to-regexp/6.1.0:
     resolution: {integrity: sha1-a4StAVljMqupX6KdLnAQRpjNXEU=, tarball: '@qixian.cs/path-to-regexp/download/@qixian.cs/path-to-regexp-6.1.0.tgz'}
     dev: false
@@ -435,6 +524,16 @@ packages:
       '@types/react': 17.0.38
       hoist-non-react-statics: 3.3.2
     dev: false
+
+  /@types/http-proxy/1.17.8:
+    resolution: {integrity: sha512-5kPLG5BKpWYkw/LVOGWpiq3nEVqxiN32rTgI53Sk12/xHFQ2rG3ehI9IO+O3W2QoKeyB92dJkoka8SUm6BX1pA==, tarball: '@types/http-proxy/download/@types/http-proxy-1.17.8.tgz'}
+    dependencies:
+      '@types/node': 17.0.9
+    dev: true
+
+  /@types/node/17.0.9:
+    resolution: {integrity: sha512-5dNBXu/FOER+EXnyah7rn8xlNrfMOQb/qXnw4NQgLkCygKBKhdmF/CA5oXVOKZLBEahw8s2WP9LxIcN/oDDRgQ==, tarball: '@types/node/download/@types/node-17.0.9.tgz'}
+    dev: true
 
   /@types/prop-types/15.7.4:
     resolution: {integrity: sha1-/PcgXCXf95Xuea8eMNosl5CAjxE=, tarball: '@types/prop-types/download/@types/prop-types-15.7.4.tgz'}
@@ -603,6 +702,13 @@ packages:
       qs: 6.9.6
       raw-body: 2.4.2
       type-is: 1.6.18
+    dev: true
+
+  /braces/3.0.2:
+    resolution: {integrity: sha1-NFThpGLujVmeI23zNs2epPiv4Qc=, tarball: braces/download/braces-3.0.2.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      fill-range: 7.0.1
     dev: true
 
   /browserslist/4.19.1:
@@ -947,6 +1053,10 @@ packages:
     engines: {node: '>= 0.6'}
     dev: true
 
+  /eventemitter3/4.0.7:
+    resolution: {integrity: sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==, tarball: eventemitter3/download/eventemitter3-4.0.7.tgz}
+    dev: true
+
   /express/4.17.2:
     resolution: {integrity: sha512-oxlxJxcQlYwqPWKVJJtvQiwHgosH/LrLSPA+H4UxpyvSS6jC5aH+5MoHFM+KABgTOt0APue4w66Ha8jCUo9QGg==, tarball: express/download/express-4.17.2.tgz}
     engines: {node: '>= 0.10.0'}
@@ -987,6 +1097,13 @@ packages:
     resolution: {integrity: sha1-On1WtVnWy8PrUSMlJE5hmmXGxSU=, tarball: fast-deep-equal/download/fast-deep-equal-3.1.3.tgz?cache=0&sync_timestamp=1632883289464&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Ffast-deep-equal%2Fdownload%2Ffast-deep-equal-3.1.3.tgz}
     dev: false
 
+  /fill-range/7.0.1:
+    resolution: {integrity: sha1-GRmmp8df44ssfHflGYU12prN2kA=, tarball: fill-range/download/fill-range-7.0.1.tgz}
+    engines: {node: '>=8'}
+    dependencies:
+      to-regex-range: 5.0.1
+    dev: true
+
   /finalhandler/1.1.2:
     resolution: {integrity: sha1-t+fQAP/RGTjQ/bBTUG9uur6fWH0=, tarball: finalhandler/download/finalhandler-1.1.2.tgz}
     engines: {node: '>= 0.8'}
@@ -1008,7 +1125,6 @@ packages:
     peerDependenciesMeta:
       debug:
         optional: true
-    dev: false
 
   /forwarded/0.2.0:
     resolution: {integrity: sha1-ImmTZCiq1MFcfr6XeahL8LKoGBE=, tarball: forwarded/download/forwarded-0.2.0.tgz}
@@ -1083,6 +1199,30 @@ packages:
       toidentifier: 1.0.1
     dev: true
 
+  /http-proxy-middleware/2.0.1:
+    resolution: {integrity: sha512-cfaXRVoZxSed/BmkA7SwBVNI9Kj7HFltaE5rqYOub5kWzWZ+gofV2koVN1j2rMW7pEfSSlCHGJ31xmuyFyfLOg==, tarball: http-proxy-middleware/download/http-proxy-middleware-2.0.1.tgz}
+    engines: {node: '>=12.0.0'}
+    dependencies:
+      '@types/http-proxy': 1.17.8
+      http-proxy: 1.18.1
+      is-glob: 4.0.3
+      is-plain-obj: 3.0.0
+      micromatch: 4.0.4
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
+  /http-proxy/1.18.1:
+    resolution: {integrity: sha1-QBVB8FNIhLv5UmAzTnL4juOXZUk=, tarball: http-proxy/download/http-proxy-1.18.1.tgz}
+    engines: {node: '>=8.0.0'}
+    dependencies:
+      eventemitter3: 4.0.7
+      follow-redirects: 1.14.7
+      requires-port: 1.0.0
+    transitivePeerDependencies:
+      - debug
+    dev: true
+
   /iconv-lite/0.4.24:
     resolution: {integrity: sha1-ICK0sl+93CHS9SSXSkdKr+czkIs=, tarball: iconv-lite/download/iconv-lite-0.4.24.tgz}
     engines: {node: '>=0.10.0'}
@@ -1117,6 +1257,28 @@ packages:
     resolution: {integrity: sha512-SdNCUs284hr40hFTFP6l0IfZ/RSrMXF3qgoRHd3/79unUTvrFO/JoXwkGm+5J/Oe3E/b5GsnG330uUNgRpu1PA==, tarball: is-core-module/download/is-core-module-2.8.1.tgz}
     dependencies:
       has: 1.0.3
+    dev: true
+
+  /is-extglob/2.1.1:
+    resolution: {integrity: sha1-qIwCU1eR8C7TfHahueqXc8gz+MI=, tarball: is-extglob/download/is-extglob-2.1.1.tgz}
+    engines: {node: '>=0.10.0'}
+    dev: true
+
+  /is-glob/4.0.3:
+    resolution: {integrity: sha1-ZPYeQsu7LuwgcanawLKLoeZdUIQ=, tarball: is-glob/download/is-glob-4.0.3.tgz}
+    engines: {node: '>=0.10.0'}
+    dependencies:
+      is-extglob: 2.1.1
+    dev: true
+
+  /is-number/7.0.0:
+    resolution: {integrity: sha1-dTU0W4lnNNX4DE0GxQlVUnoU8Ss=, tarball: is-number/download/is-number-7.0.0.tgz}
+    engines: {node: '>=0.12.0'}
+    dev: true
+
+  /is-plain-obj/3.0.0:
+    resolution: {integrity: sha1-r28uoUrFpkYYOlu9tbqrvBVq2dc=, tarball: is-plain-obj/download/is-plain-obj-3.0.0.tgz}
+    engines: {node: '>=10'}
     dev: true
 
   /is-what/3.14.1:
@@ -1164,6 +1326,10 @@ packages:
       source-map: 0.6.1
     dev: true
 
+  /lodash-es/4.17.21:
+    resolution: {integrity: sha512-mKnC+QJ9pWVzv+C4/U3rRsHapFfHvQFoFB92e52xeyGMcX6/OlIl78je1u8vePzYZSkkogMPJ2yjxxsb89cxyw==, tarball: lodash-es/download/lodash-es-4.17.21.tgz}
+    dev: false
+
   /lodash.isequal/4.5.0:
     resolution: {integrity: sha512-pDo3lu8Jhfjqls6GkMgpahsF9kCyayhgykjyLMNFTKWrpVdAQtYyB4muAMWozBB4ig/dtWAmsMxLEI8wuz+DYQ==, tarball: lodash.isequal/download/lodash.isequal-4.5.0.tgz}
     dev: false
@@ -1172,12 +1338,16 @@ packages:
     resolution: {integrity: sha1-VYqlO0O2YeGSWgr9+japoQhf5Xo=, tarball: lodash.merge/download/lodash.merge-4.6.2.tgz}
     dev: false
 
+  /lodash.tonumber/4.0.3:
+    resolution: {integrity: sha1-C5azGzVnJ5Prf1pj7nkfG56QJdk=, tarball: lodash.tonumber/download/lodash.tonumber-4.0.3.tgz}
+    dev: false
+
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==, tarball: lodash/download/lodash-4.17.21.tgz}
     dev: false
 
   /loose-envify/1.4.0:
-    resolution: {integrity: sha1-ce5R+nvkyuwaY4OffmgtgTLTDK8=, tarball: loose-envify/download/loose-envify-1.4.0.tgz}
+    resolution: {integrity: sha1-ce5R+nvkyuwaY4OffmgtgTLTDK8=, tarball: loose-envify/download/loose-envify-1.4.0.tgz?cache=0&sync_timestamp=1632822742309&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Floose-envify%2Fdownload%2Floose-envify-1.4.0.tgz}
     hasBin: true
     dependencies:
       js-tokens: 4.0.0
@@ -1192,6 +1362,10 @@ packages:
       semver: 5.7.1
     dev: true
     optional: true
+
+  /material-colors/1.2.6:
+    resolution: {integrity: sha1-bRlYhxEmmSzuzHL0vMTY8BCGX0Y=, tarball: material-colors/download/material-colors-1.2.6.tgz}
+    dev: false
 
   /media-typer/0.3.0:
     resolution: {integrity: sha1-hxDXrwqmJvj/+hzgAWhUUmMlV0g=, tarball: media-typer/download/media-typer-0.3.0.tgz}
@@ -1213,6 +1387,14 @@ packages:
   /methods/1.1.2:
     resolution: {integrity: sha1-VSmk1nZUE07cxSZmVoNbD4Ua/O4=, tarball: methods/download/methods-1.1.2.tgz}
     engines: {node: '>= 0.6'}
+    dev: true
+
+  /micromatch/4.0.4:
+    resolution: {integrity: sha1-iW1Rnf6dsl/OlM63pQCRm/iB6/k=, tarball: micromatch/download/micromatch-4.0.4.tgz?cache=0&sync_timestamp=1632822666893&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fmicromatch%2Fdownload%2Fmicromatch-4.0.4.tgz}
+    engines: {node: '>=8.6'}
+    dependencies:
+      braces: 3.0.2
+      picomatch: 2.3.1
     dev: true
 
   /mime-db/1.51.0:
@@ -1282,7 +1464,7 @@ packages:
     dev: true
 
   /object-assign/4.1.1:
-    resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=, tarball: object-assign/download/object-assign-4.1.1.tgz}
+    resolution: {integrity: sha1-IQmtx5ZYh8/AXLvUQsrIv7s2CGM=, tarball: object-assign/download/object-assign-4.1.1.tgz?cache=0&sync_timestamp=1632822742534&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fobject-assign%2Fdownload%2Fobject-assign-4.1.1.tgz}
     engines: {node: '>=0.10.0'}
     dev: false
 
@@ -1879,6 +2061,21 @@ packages:
       react-dom: 17.0.2_react@17.0.2
     dev: false
 
+  /react-color/2.19.3_react@17.0.2:
+    resolution: {integrity: sha1-7GxrRWgxKjxqGEIKsEcuFGqlaD0=, tarball: react-color/download/react-color-2.19.3.tgz}
+    peerDependencies:
+      react: '*'
+    dependencies:
+      '@icons/material': 0.2.4_react@17.0.2
+      lodash: 4.17.21
+      lodash-es: 4.17.21
+      material-colors: 1.2.6
+      prop-types: 15.8.1
+      react: 17.0.2
+      reactcss: 1.2.3
+      tinycolor2: 1.4.2
+    dev: false
+
   /react-dom/17.0.2_react@17.0.2:
     resolution: {integrity: sha512-s4h96KtLDUQlsENhMn1ar8t2bEa+q/YAtj8pPPdIjPDGBDIVNsrD9aXNWqspUe6AzKCIG0C1HZZLqLV7qpOBGA==, tarball: react-dom/download/react-dom-17.0.2.tgz}
     peerDependencies:
@@ -1967,6 +2164,12 @@ packages:
       object-assign: 4.1.1
     dev: false
 
+  /reactcss/1.2.3:
+    resolution: {integrity: sha512-KiwVUcFu1RErkI97ywr8nvx8dNOpT03rbnma0SSalTYjkrPYaEajR4a/MRt6DZ46K6arDRbWMNHF+xH7G7n/8A==, tarball: reactcss/download/reactcss-1.2.3.tgz}
+    dependencies:
+      lodash: 4.17.21
+    dev: false
+
   /redux/4.1.2:
     resolution: {integrity: sha512-SH8PglcebESbd/shgf6mii6EIoRM0zrQyjcuQ+ojmfxjTtE0z9Y8pa62iA/OJ58qjP6j27uyW4kUF4jl/jd6sw==, tarball: redux/download/redux-4.1.2.tgz}
     dependencies:
@@ -1976,6 +2179,10 @@ packages:
   /regenerator-runtime/0.13.9:
     resolution: {integrity: sha512-p3VT+cOEgxFsRRA9X4lkI1E+k2/CtnKtU4gcxyaCUreilL/vqI6CdZ3wxVUx3UOUg+gnUOQQcRI7BmSI656MYA==, tarball: regenerator-runtime/download/regenerator-runtime-0.13.9.tgz}
     dev: false
+
+  /requires-port/1.0.0:
+    resolution: {integrity: sha1-kl0mAdOaxIXgkc8NpcbmlNw9yv8=, tarball: requires-port/download/requires-port-1.0.0.tgz}
+    dev: true
 
   /resize-observer-polyfill/1.5.1:
     resolution: {integrity: sha1-DpAg3T0hAkRY1OvSfiPkAmmBBGQ=, tarball: resize-observer-polyfill/download/resize-observer-polyfill-1.5.1.tgz}
@@ -2087,7 +2294,7 @@ packages:
     dev: true
 
   /source-map/0.6.1:
-    resolution: {integrity: sha1-dHIq8y6WFOnCh6jQu95IteLxomM=, tarball: source-map/download/source-map-0.6.1.tgz}
+    resolution: {integrity: sha1-dHIq8y6WFOnCh6jQu95IteLxomM=, tarball: source-map/download/source-map-0.6.1.tgz?cache=0&sync_timestamp=1632822727980&other_urls=https%3A%2F%2Fregistry.npmmirror.com%2Fsource-map%2Fdownload%2Fsource-map-0.6.1.tgz}
     engines: {node: '>=0.10.0'}
     requiresBuild: true
     dev: true
@@ -2122,9 +2329,20 @@ packages:
       react: 17.0.2
     dev: false
 
+  /tinycolor2/1.4.2:
+    resolution: {integrity: sha1-P2pNEHGtB2dtf6Ry4frECnGdiAM=, tarball: tinycolor2/download/tinycolor2-1.4.2.tgz}
+    dev: false
+
   /to-fast-properties/2.0.0:
     resolution: {integrity: sha1-3F5pjL0HkmW8c+A3doGk5Og/YW4=, tarball: to-fast-properties/download/to-fast-properties-2.0.0.tgz}
     engines: {node: '>=4'}
+    dev: true
+
+  /to-regex-range/5.0.1:
+    resolution: {integrity: sha1-FkjESq58jZiKMmAY7XL1tN0DkuQ=, tarball: to-regex-range/download/to-regex-range-5.0.1.tgz}
+    engines: {node: '>=8.0'}
+    dependencies:
+      is-number: 7.0.0
     dev: true
 
   /toggle-selection/1.0.6:

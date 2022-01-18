@@ -15,39 +15,14 @@ export default {
     path: '/',
     routes: [
       {
-        path: '/project',
-        name: '项目列表',
+        path: '/calendar',
+        name: '日历配置列表',
         icon: <TableOutlined />,
       },
       {
-        path: '/project/:id/commit/:commitSha/tree/:catalogue',
-        name: '覆盖率详情',
+        path: '/calendar/:id',
+        name: '日历配置详情',
         hideInMenu: true
-      },
-      // {
-      //   path: '/project/:id',
-      //   name: '项目新增',
-      //   hideInMenu: true
-      // },
-      {
-        path: '/code-house',
-        name: 'Git Source',
-        icon: <CodepenOutlined />
-      },
-      {
-        path: '/code-house/-1',
-        name: 'Git Source新增',
-        hideInMenu: true
-      },
-      {
-        path: '/code-house/:id',
-        name: 'Git Source编辑',
-        hideInMenu: true
-      },
-      {
-        path: '/user',
-        name: '用户信息',
-        icon: <UserOutlined />,
       },
     ],
   },
