@@ -14,12 +14,12 @@ module.exports = {
   },
   FAT: {
     '/api/cov': {
-      target: 'http://qingkong-api.rico.org.cn',
+      target: 'http://127.0.0.1:8080',
       changeOrigin: true,
       pathRewrite: { '/api/cov': '/' },
     },
     '/report': {
-      target: 'http://qingkong-api.rico.org.cn',
+      target: 'http://127.0.0.1:8080',
       changeOrigin: true,
       pathRewrite: { '/report': '/report' },
     },

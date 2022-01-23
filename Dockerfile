@@ -1,5 +1,7 @@
 FROM node:14.16.0-alpine
-MAINTAINER zhangwenrou
+MAINTAINER wr_zhang25
+
+ENV CUSTOM_ENV=dev
 
 RUN mkdir -p /usr/src/app
 COPY . /usr/src/app/
@@ -10,4 +12,4 @@ RUN npm install
 RUN npm run build
 
 EXPOSE 8080
-CMD [ "node", "server.js" ]
+CMD ["node", "server.js" ]
