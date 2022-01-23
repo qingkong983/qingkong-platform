@@ -1,11 +1,12 @@
-import React, { useRef } from 'react'
+import React, {useEffect, useRef} from 'react'
 import { message } from 'antd'
 import type { ProFormInstance } from '@ant-design/pro-form'
 import ProForm, {
     ProFormText,ProFormDatePicker,ProFormTextArea
 } from '@ant-design/pro-form'
 import { CalendarService } from '../../services/CalendarService'
-import { useParams } from "react-router-dom";
+import {useNavigate, useParams} from "react-router-dom";
+import moment from "moment";
 
 const waitTime = (time: number = 100) => {
     return new Promise((resolve) => {
@@ -20,6 +21,35 @@ export default (props: any) => {
     const formRef: any = useRef<
         ProFormInstance<any>
         >()
+    const history = useNavigate()
+    console.log(moment().format('YYYY-MM-DD'),123)
+    useEffect(()=>{
+        if (params.id !=='-1'){
+            CalendarService.retrieveACalendar({id: Number(params.id)}).then(res=>{
+                console.log(res)
+                formRef.current?.setFieldsValue({
+                    proposal:res.proposal,
+                    content:res.content,
+                    from:res.from,
+                    profession:res.profession,
+                    author:res.author,
+                    authorOriginName:res.authorOriginName,
+                    date:res.date
+                })
+            })
+        } else {
+            formRef.current?.setFieldsValue({
+                proposal: '',
+                content:'',
+                from:'',
+                profession:'',
+                author:'',
+                authorOriginName:'',
+                date: moment().format('YYYY-MM-DD')
+            })
+        }
+    },[])
+
     return (
         <div style={{ backgroundColor: 'white', padding: '20px' }}>
             <ProForm<any>
@@ -32,34 +62,19 @@ export default (props: any) => {
                             ...val2,
                         })
                         message.success('创建成功')
+                        history('/calendar')
                     } else {
                         await CalendarService.updateACalendar({
                             ...val2,
                             id: params.id,
                         })
+
                         message.success('更新')
                     }
                 }}
                 formRef={formRef}
                 params={{ id: '100' }}
                 formKey="base-form-use-demo"
-                request={async () => {
-                    let retrieveACodeHouseRes: any = {}
-                    if (params.id === '-1') {
-                        retrieveACodeHouseRes = {
-                            repoId: '',
-                            codeHouseId: '',
-                            date:'2022-01-01'
-                        }
-                        await waitTime(100)
-                    } else {
-                        retrieveACodeHouseRes = await CalendarService.retrieveACalendar({
-                            id: params.id,
-                        })
-                    }
-
-                    return retrieveACodeHouseRes
-                }}
                 autoFocusFirstInput
             >
                 <ProForm.Group>

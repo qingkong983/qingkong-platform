@@ -73,7 +73,7 @@ export default () => {
         }}
         onMenuHeaderClick={(e) => console.log(e)}
         menuItemRender={(item: any, dom) => {
-          console.log(item,1)
+          // console.log(item,1)
           return (
             <a
               onClick={() => {
