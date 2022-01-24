@@ -2,6 +2,9 @@ import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
 // @ts-ignore
 import proxy from './config/proxy'
+// @ts-ignore
+import externalGlobals from "rollup-plugin-external-globals";
+import { visualizer } from 'rollup-plugin-visualizer';
 
 // 由于express代理配置与vite代理不一致，所以需要转换
 // FAT PROD
@@ -24,7 +27,7 @@ for (const proxyConfigKey in proxyConfig) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [react(),visualizer()],
   css: {
     preprocessorOptions: {
       less: {
@@ -44,5 +47,19 @@ export default defineConfig({
     proxy: convertProxyConfig,
     host: '0.0.0.0',
     port: 8000,
+  },
+  build: {
+    rollupOptions: {
+      // external: ["antd"],
+      plugins: [
+        // commonjs(),
+        externalGlobals({
+          react: "React",
+          "react-dom": "ReactDOM",
+          "antd": "antd",
+          "moment": "moment"
+        }),
+      ],
+    },
   },
 })

@@ -34,7 +34,7 @@ export default () => {
     <div
       id="main-box">
       <ProLayout
-        title={'Canyon'}
+        title={'qingkong'}
         logo={logoPng}
         {...defaultProps}
         location={{
@@ -67,7 +67,7 @@ export default () => {
                   marginRight: 10,
                 }}
               />
-              {!props?.collapsed && '使用文档'}
+              {!props?.collapsed && 'v1.0.0'}
             </a>
           )
         }}

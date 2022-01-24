@@ -6,7 +6,7 @@ import Footer from './../Footer'
 const { Content, Sider, Header } = Layout
 import { ApartmentOutlined } from '@ant-design/icons'
 import { useNavigate,Outlet } from "react-router-dom";
-import logoPng from "../../assets/img/logo.png";
+import logoPng from "../../assets/img/logo.svg";
 
 
 export default (props: any) => {
@@ -17,7 +17,7 @@ export default (props: any) => {
         <Sider width={208} theme={'light'} className={'left-sider'}>
           <div className={'logo'} onClick={()=>history('/')}>
             <img src={logoPng} alt="" />
-            <span>Canyon</span>
+            <span>qingkong</span>
           </div>
           {/*导航栏*/}
           <Menu
