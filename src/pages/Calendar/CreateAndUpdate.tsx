@@ -2,7 +2,7 @@ import React, {useEffect, useRef} from 'react'
 import { message } from 'antd'
 import type { ProFormInstance } from '@ant-design/pro-form'
 import ProForm, {
-    ProFormText,ProFormDatePicker,ProFormTextArea
+    ProFormText,ProFormDatePicker,ProFormTextArea, ProFormUploadButton
 } from '@ant-design/pro-form'
 import { CalendarService } from '../../services/CalendarService'
 import {useNavigate, useParams} from "react-router-dom";
@@ -128,6 +128,13 @@ export default (props: any) => {
                         name="date"
                         label="date"
                         placeholder="date"
+                    />
+
+                    <ProFormUploadButton label="上传凭证" max={1} name="file"  rules={[{ required: true, message: '请上传到款凭证' }]}
+                                         action="/api/common/uploadimage" //上传图片接口地址
+                                         onChange={(e) => {
+                                             console.log(e)
+                                         }}
                     />
                 </ProForm.Group>
             </ProForm>
