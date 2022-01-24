@@ -5,6 +5,7 @@ import proxy from './config/proxy'
 // @ts-ignore
 import externalGlobals from "rollup-plugin-external-globals";
 import { visualizer } from 'rollup-plugin-visualizer';
+import viteCompression from 'vite-plugin-compression';
 
 // 由于express代理配置与vite代理不一致，所以需要转换
 // FAT PROD
@@ -27,7 +28,7 @@ for (const proxyConfigKey in proxyConfig) {
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react(),visualizer()],
+  plugins: [react(),visualizer(),viteCompression()],
   css: {
     preprocessorOptions: {
       less: {
