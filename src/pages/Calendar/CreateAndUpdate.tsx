@@ -130,11 +130,14 @@ export default (props: any) => {
                         placeholder="date"
                     />
 
-                    <ProFormUploadButton label="上传凭证" max={1} name="file"  rules={[{ required: true, message: '请上传到款凭证' }]}
-                                         action="/api/common/uploadimage" //上传图片接口地址
+                    <ProFormUploadButton label="上传凭证"
+                                         max={1} name="file"
+                                         rules={[{ required: true, message: '请上传到款凭证' }]}
+                                         action="http://public-api.rico.org.cn/file/upload" //上传图片接口地址
                                          onChange={(e) => {
                                              console.log(e)
                                          }}
+                                         fieldProps={{data:{bucket:'qingkong-home',label:'1010'}}}
                     />
                 </ProForm.Group>
             </ProForm>
