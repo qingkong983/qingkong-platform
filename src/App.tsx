@@ -1,18 +1,12 @@
-import React, { useEffect } from 'react'
+import { FC } from 'react'
 
-import routerConfig from "./routers";
-import { useRoutes } from "react-router-dom";
+import { useRoutes } from 'react-router-dom'
+import routerConfig from './routers'
 
-interface IProps{
-}
-
-const App:React.FC<IProps> = () => {
+const App: FC<any> = (p) => {
+  console.log(p)
   const useRoutesRouterConfig = useRoutes(routerConfig)
-  return <div>
-    {
-      useRoutesRouterConfig
-    }
-  </div>
+  return <div>{useRoutesRouterConfig}</div>
 }
 
 export default App

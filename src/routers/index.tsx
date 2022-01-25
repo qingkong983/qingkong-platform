@@ -1,7 +1,5 @@
-import React from 'react'
-import MainBox from '../components/MainBox/indexNew'
 import { Navigate } from 'react-router-dom'
-import Home from '../pages/Home'
+import MainBox from '../components/MainBox/indexNew'
 import Calendar from '../pages/Calendar'
 import CalendarCreateAndUpdate from '../pages/Calendar/CreateAndUpdate'
 
@@ -12,7 +10,7 @@ export default [
     children: [
       {
         path: '/',
-        element: <Navigate to={'/calendar'} replace />,
+        element: <Navigate to="/calendar" replace />,
       },
       {
         path: 'calendar/:id',
@@ -21,7 +19,7 @@ export default [
       {
         path: '/calendar',
         element: <Calendar />,
-      }
+      },
     ],
   },
 ]

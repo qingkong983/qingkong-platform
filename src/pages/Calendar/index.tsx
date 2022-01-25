@@ -1,86 +1,104 @@
-import React, {useRef} from 'react';
-import type { ProColumns } from '@ant-design/pro-table';
-import ProTable from '@ant-design/pro-table';
-import {CalendarService} from "../../services/CalendarService";
-import {Button, Divider, message, Popconfirm} from "antd";
-import {useNavigate} from "react-router-dom";
+import React, { useRef } from 'react'
+import type { ProColumns } from '@ant-design/pro-table'
+import ProTable from '@ant-design/pro-table'
+import { Button, Divider, message, Popconfirm } from 'antd'
+import { useNavigate } from 'react-router-dom'
+import CalendarService from '../../services/CalendarService'
 
 export type TableListItem = {
-  id: number;
-  proposal: string;
-  content: string;
-  from: string;
-  profession: string;
-  author: string;
-  authorOriginName: string;
-};
+  id: number
+  proposal: string
+  content: string
+  from: string
+  profession: string
+  author: string
+  authorOriginName: string
+}
 
 const Calendar: React.FC = () => {
-  const ref = useRef<any>();
+  const ref = useRef<any>()
   const history = useNavigate()
   const columns: ProColumns<TableListItem>[] = [
     {
-      search:false,
+      search: false,
       title: '提议',
-      dataIndex: 'proposal'
+      dataIndex: 'proposal',
     },
     {
-      search:false,
+      search: false,
       title: '内容',
-      dataIndex: 'content'
+      dataIndex: 'content',
     },
     {
-      search:false,
+      search: false,
       title: '出自',
-      dataIndex: 'from'
+      dataIndex: 'from',
     },
     {
-      search:false,
+      search: false,
       title: '职业',
-      dataIndex: 'profession'
+      dataIndex: 'profession',
     },
     {
-      search:false,
+      search: false,
       title: '作者',
-      dataIndex: 'author'
+      dataIndex: 'author',
     },
     {
-      search:false,
+      search: false,
       title: '作者源名',
-      dataIndex: 'authorOriginName'
+      dataIndex: 'authorOriginName',
     },
     {
-      search:false,
+      search: false,
       title: '日期',
-      dataIndex: 'date'
+      dataIndex: 'date',
     },
     {
       title: '操作',
-      search:false,
-      render(_,tableListItem){
-        return <div>
-          <a onClick={()=>{
-            history(`/calendar/${tableListItem.id}`)
-          }}>查看</a>
-          <Divider type={'vertical'}/>
-          <Popconfirm
-            title="确认删除?"
-            onConfirm={()=>{
-              CalendarService.deleteACalendar({id:tableListItem.id}).then(res=>{
-                message.success('删除成功')
-                ref.current.reload()
-              })
-            }}
-            onCancel={()=>{}}
-            okText="Yes"
-            cancelText="No"
-          >
-            <a style={{color:'red'}}>删除</a>
-          </Popconfirm>
-        </div>
-      }
-    }
-  ];
+      search: false,
+      render(_, tableListItem) {
+        return (
+          <div>
+            <Button
+              onClick={() => {
+                history(`/calendar/${tableListItem.id}`)
+              }}
+            >
+              查看
+            </Button>
+            <Divider type="vertical" />
+            <Popconfirm
+              title="确认删除?"
+              onConfirm={() => {
+                CalendarService.deleteACalendar({ id: tableListItem.id }).then(() => {
+                  message.success('删除成功')
+                  ref.current.reload()
+                })
+              }}
+              onCancel={() => {
+                console.log(1)
+              }}
+              okText="Yes"
+              cancelText="No"
+            >
+              <Button style={{ color: 'red' }}>删除</Button>
+            </Popconfirm>
+          </div>
+        )
+      },
+    },
+  ]
+  const toolbarrender = () => [
+    <Button
+      type="primary"
+      onClick={() => {
+        history(`/calendar/-1`)
+      }}
+    >
+      新增
+    </Button>,
+  ]
   return (
     <div>
       <ProTable<TableListItem>
@@ -91,28 +109,19 @@ const Calendar: React.FC = () => {
         pagination={{
           showQuickJumper: true,
         }}
-        request={(params, sorter, filter) => {
-          return CalendarService.listCalendar().then(res=>{
+        request={() => {
+          return CalendarService.listCalendar().then((res) => {
             return {
               data: res,
-              success: true
+              success: true,
             }
           })
         }}
         dateFormatter="string"
-        toolBarRender={() => [
-          <Button
-              type={'primary'}
-              onClick={() => {
-                history(`/calendar/-1`)
-              }}
-          >
-            新增
-          </Button>,
-        ]}
+        toolBarRender={toolbarrender}
       />
     </div>
-  );
-};
+  )
+}
 
 export default Calendar

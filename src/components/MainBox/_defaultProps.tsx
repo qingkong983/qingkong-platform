@@ -1,14 +1,4 @@
-import React from 'react';
-import {
-  SmileOutlined,
-  CrownOutlined,
-  TabletOutlined,
-  AntDesignOutlined,
-  TableOutlined,
-  ApartmentOutlined,
-  CodepenOutlined,
-  UserOutlined
-} from "@ant-design/icons";
+import { TableOutlined } from '@ant-design/icons'
 
 export default {
   route: {
@@ -22,11 +12,11 @@ export default {
       {
         path: '/calendar/:id',
         name: '日历配置详情',
-        hideInMenu: true
+        hideInMenu: true,
       },
     ],
   },
   location: {
     pathname: '/#/',
   },
-};
+}

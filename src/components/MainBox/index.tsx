@@ -1,31 +1,34 @@
-import React, { Suspense } from 'react'
-import { Layout, Menu, Spin } from "antd";
+import { Button, Layout, Menu } from 'antd'
 import './index.less'
-import { TableOutlined, CodepenOutlined, QuestionCircleOutlined } from "@ant-design/icons";
-import Footer from './../Footer'
+import {
+  TableOutlined,
+  CodepenOutlined,
+  QuestionCircleOutlined,
+  ApartmentOutlined,
+} from '@ant-design/icons'
+import { useNavigate, Outlet } from 'react-router-dom'
+import Footer from '../Footer'
+import logoPng from '../../assets/img/logo.svg'
+
 const { Content, Sider, Header } = Layout
-import { ApartmentOutlined } from '@ant-design/icons'
-import { useNavigate,Outlet } from "react-router-dom";
-import logoPng from "../../assets/img/logo.svg";
 
-
-export default (props: any) => {
+export default () => {
   const history = useNavigate()
   return (
     <div id="main-box">
-      <Layout className={'layout-wrap'}>
-        <Sider width={208} theme={'light'} className={'left-sider'}>
-          <div className={'logo'} onClick={()=>history('/')}>
+      <Layout className="layout-wrap">
+        <Sider width={208} theme="light" className="left-sider">
+          <Button className="logo" onClick={() => history('/')}>
             <img src={logoPng} alt="" />
             <span>qingkong</span>
-          </div>
-          {/*导航栏*/}
+          </Button>
+          {/* 导航栏 */}
           <Menu
             theme="light"
             defaultSelectedKeys={['1']}
             mode="inline"
             onSelect={(val) => {
-              history('/' + val.keyPath.reverse().join('/'))
+              history(`/${val.keyPath.reverse().join('/')}`)
             }}
           >
             <Menu.Item key="project" icon={<TableOutlined />}>
@@ -40,14 +43,25 @@ export default (props: any) => {
           </Menu>
         </Sider>
         <Layout className="site-layout">
-          <Header style={{height:'48px',display:'flex',justifyContent:'space-between',alignItems:'center'}}>
-            <div className={'l'}></div>
-            <div className={'r'}>
-              <div className={'right-content-index-action'} onClick={()=>{}}>
-                <QuestionCircleOutlined style={{color:'#fff',fontSize:'16px'}} />
-              </div>
+          <Header
+            style={{
+              height: '48px',
+              display: 'flex',
+              justifyContent: 'space-between',
+              alignItems: 'center',
+            }}
+          >
+            <div className="l" />
+            <div className="r">
+              <Button
+                className="right-content-index-action"
+                onClick={() => {
+                  console.log(1)
+                }}
+              >
+                <QuestionCircleOutlined style={{ color: '#fff', fontSize: '16px' }} />
+              </Button>
             </div>
-
           </Header>
           <Content style={{ margin: '16px 16px' }}>
             <div className="site-layout-background" style={{}}>
