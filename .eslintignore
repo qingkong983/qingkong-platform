@@ -2,3 +2,4 @@ node_modules
 
 vite.config.ts
 postcss.config.js
+server.js

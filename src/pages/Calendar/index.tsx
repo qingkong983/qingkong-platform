@@ -21,7 +21,7 @@ const Calendar: React.FC = () => {
   const columns: ProColumns<TableListItem>[] = [
     {
       search: false,
-      title: '提议',
+      title: '宜/忌',
       dataIndex: 'proposal',
     },
     {

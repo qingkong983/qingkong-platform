@@ -1,15 +1,13 @@
-import { useEffect, useRef } from 'react'
-import { message } from 'antd'
+import { useEffect, useRef, useState } from 'react'
+import { message, Upload } from 'antd'
 import type { ProFormInstance } from '@ant-design/pro-form'
-import ProForm, {
-  ProFormText,
-  ProFormDatePicker,
-  ProFormTextArea,
-  ProFormUploadButton,
-} from '@ant-design/pro-form'
+import ProForm, { ProFormText, ProFormDatePicker, ProFormTextArea } from '@ant-design/pro-form'
 import { useNavigate, useParams } from 'react-router-dom'
 import moment from 'moment'
+import ImgCrop from 'antd-img-crop'
+import axios from 'axios'
 import CalendarService from '../../services/CalendarService'
+import util from '../../utils/util'
 
 const waitTime = (time = 100) => {
   return new Promise((resolve) => {
@@ -23,11 +21,10 @@ export default () => {
   const params = useParams()
   const formRef: any = useRef<ProFormInstance<any>>()
   const history = useNavigate()
-  console.log(moment().format('YYYY-MM-DD'), 123)
+  const [imageUrl, setImageUrl] = useState('')
   useEffect(() => {
     if (params.id !== '-1') {
       CalendarService.retrieveACalendar({ id: Number(params.id) }).then((res) => {
-        console.log(res)
         formRef.current?.setFieldsValue({
           proposal: res.proposal,
           content: res.content,
@@ -49,7 +46,25 @@ export default () => {
         date: moment().format('YYYY-MM-DD'),
       })
     }
+    axios
+      .post('http://public-api.rico.org.cn/file/list', {
+        label: params.id,
+        bucket: 'qingkong-home',
+      })
+      .then((res) => {
+        setImageUrl(util.genUrl(res.data[0]))
+      })
   }, [])
+
+  const onChange = (info: any) => {
+    if (info.file.status === 'uploading') {
+      return
+    }
+    if (info.file.status === 'done') {
+      console.log(info)
+      setImageUrl(util.genUrl(info.file.response.generatedMaps[0]))
+    }
+  }
 
   return (
     <div style={{ backgroundColor: 'white', padding: '20px' }}>
@@ -58,11 +73,12 @@ export default () => {
           await waitTime(100)
           const val2 = await formRef.current?.validateFieldsReturnFormatValue?.()
           if (params.id === '-1') {
-            await CalendarService.createACalendar({
+            CalendarService.createACalendar({
               ...val2,
+            }).then((res) => {
+              message.success('新增成功，现可以编辑背景图片')
+              history(`/calendar/${res.id}`)
             })
-            message.success('创建成功')
-            history('/calendar')
           } else {
             await CalendarService.updateACalendar({
               ...val2,
@@ -78,7 +94,7 @@ export default () => {
         autoFocusFirstInput
       >
         <ProForm.Group>
-          <ProFormText width="md" name="proposal" label="提议" placeholder="proposal" />
+          <ProFormText width="md" name="proposal" label="宜/忌" placeholder="proposal" />
           <ProFormTextArea width="md" name="content" label="内容" placeholder="content" />
         </ProForm.Group>
 
@@ -99,18 +115,24 @@ export default () => {
 
         <ProForm.Group>
           <ProFormDatePicker width="md" name="date" label="date" placeholder="date" />
-
-          <ProFormUploadButton
-            label="上传凭证"
-            max={1}
-            name="file"
-            rules={[{ required: true, message: '请上传到款凭证' }]}
-            action="http://public-api.rico.org.cn/file/upload" // 上传图片接口地址
-            onChange={(e) => {
-              console.log(e)
-            }}
-            fieldProps={{ data: { bucket: 'qingkong-home', label: '1010' } }}
-          />
+          {params.id !== '-1' ? (
+            <ImgCrop rotate aspect={0.74}>
+              <Upload
+                action="http://public-api.rico.org.cn/file/upload"
+                listType="picture-card"
+                onChange={onChange}
+                showUploadList={false}
+                beforeUpload={(f) => util.yasuo(f)}
+                data={{ label: params.id, bucket: 'qingkong-home' }}
+              >
+                {imageUrl ? (
+                  <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+                ) : (
+                  '上传背景图片'
+                )}
+              </Upload>
+            </ImgCrop>
+          ) : null}
         </ProForm.Group>
       </ProForm>
     </div>
