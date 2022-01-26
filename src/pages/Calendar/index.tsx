@@ -4,6 +4,7 @@ import ProTable from '@ant-design/pro-table'
 import { Button, Divider, message, Popconfirm } from 'antd'
 import { useNavigate } from 'react-router-dom'
 import CalendarService from '../../services/CalendarService'
+import './index.less'
 
 export type TableListItem = {
   id: number

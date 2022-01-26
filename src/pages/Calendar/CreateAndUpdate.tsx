@@ -8,6 +8,7 @@ import ImgCrop from 'antd-img-crop'
 import axios from 'axios'
 import CalendarService from '../../services/CalendarService'
 import util from '../../utils/util'
+import { SketchPicker } from 'react-color'
 
 const waitTime = (time = 100) => {
   return new Promise((resolve) => {
@@ -22,9 +23,11 @@ export default () => {
   const formRef: any = useRef<ProFormInstance<any>>()
   const history = useNavigate()
   const [imageUrl, setImageUrl] = useState('')
+  const [background, setBackground] = useState('#000000')
   useEffect(() => {
     if (params.id !== '-1') {
       CalendarService.retrieveACalendar({ id: Number(params.id) }).then((res) => {
+        setBackground(res.background || '#000000')
         formRef.current?.setFieldsValue({
           proposal: res.proposal,
           content: res.content,
@@ -66,6 +69,12 @@ export default () => {
     }
   }
 
+
+  const handleChangeComplete = (color) => {
+    // this.setState({ background:  });
+    setBackground(color.hex)
+  };
+
   return (
     <div style={{ backgroundColor: 'white', padding: '20px' }}>
       <ProForm<any>
@@ -75,6 +84,7 @@ export default () => {
           if (params.id === '-1') {
             CalendarService.createACalendar({
               ...val2,
+              background
             }).then((res) => {
               message.success('新增成功，现可以编辑背景图片')
               history(`/calendar/${res.id}`)
@@ -82,6 +92,7 @@ export default () => {
           } else {
             await CalendarService.updateACalendar({
               ...val2,
+              background,
               id: params.id,
             })
 
@@ -116,24 +127,38 @@ export default () => {
         <ProForm.Group>
           <ProFormDatePicker width="md" name="date" label="date" placeholder="date" />
           {params.id !== '-1' ? (
-            <ImgCrop rotate aspect={0.74}>
-              <Upload
-                action="http://public-api.rico.org.cn/file/upload"
-                listType="picture-card"
-                onChange={onChange}
-                showUploadList={false}
-                beforeUpload={(f) => util.yasuo(f)}
-                data={{ label: params.id, bucket: 'qingkong-home' }}
-              >
-                {imageUrl ? (
-                  <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
-                ) : (
-                  '上传背景图片'
-                )}
-              </Upload>
-            </ImgCrop>
+            <div>
+              <p>背景图片</p>
+              <ImgCrop rotate aspect={0.74}>
+                <Upload
+                    action="http://public-api.rico.org.cn/file/upload"
+                    listType="picture-card"
+                    onChange={onChange}
+                    showUploadList={false}
+                    beforeUpload={(f) => util.yasuo(f)}
+                    data={{ label: params.id, bucket: 'qingkong-home' }}
+                >
+                  {imageUrl ? (
+                      <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+                  ) : (
+                      '上传背景图片'
+                  )}
+                </Upload>
+              </ImgCrop>
+            </div>
           ) : null}
         </ProForm.Group>
+        {/*{background}*/}
+        <p>内容文字颜色</p>
+        {/*<div className={'bg-zhanshi'} style={{ backgroundColor:background }}>*/}
+
+        {/*</div>*/}
+        <div style={{marginBottom:'20px'}}>
+          <SketchPicker
+              width={'300px'}
+              color={ background }
+              onChangeComplete={ handleChangeComplete }/>
+        </div>
       </ProForm>
     </div>
   )
