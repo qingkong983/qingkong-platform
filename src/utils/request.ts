@@ -8,7 +8,6 @@ const service = axios.create({
 
 const err = (error: any) => {
   if (error.response) {
-    console.log(error.response, 'error.response')
     message.error(error.response.data.message)
   }
   return Promise.reject(error)
@@ -28,7 +27,6 @@ service.interceptors.request.use((config) => {
   return config
 }, err)
 
-// response interceptor
 service.interceptors.response.use((response) => {
   const { data } = response
   return data

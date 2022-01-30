@@ -6,9 +6,9 @@ import { useNavigate, useParams } from 'react-router-dom'
 import moment from 'moment'
 import ImgCrop from 'antd-img-crop'
 import axios from 'axios'
+import { SketchPicker } from 'react-color'
 import CalendarService from '../../services/CalendarService'
 import util from '../../utils/util'
-import { SketchPicker } from 'react-color'
 
 const waitTime = (time = 100) => {
   return new Promise((resolve) => {
@@ -69,11 +69,10 @@ export default () => {
     }
   }
 
-
   const handleChangeComplete = (color) => {
     // this.setState({ background:  });
     setBackground(color.hex)
-  };
+  }
 
   return (
     <div style={{ backgroundColor: 'white', padding: '20px' }}>
@@ -84,7 +83,7 @@ export default () => {
           if (params.id === '-1') {
             CalendarService.createACalendar({
               ...val2,
-              background
+              background,
             }).then((res) => {
               message.success('新增成功，现可以编辑背景图片')
               history(`/calendar/${res.id}`)
@@ -131,33 +130,30 @@ export default () => {
               <p>背景图片</p>
               <ImgCrop rotate aspect={0.74}>
                 <Upload
-                    action="http://public-api.rico.org.cn/file/upload"
-                    listType="picture-card"
-                    onChange={onChange}
-                    showUploadList={false}
-                    beforeUpload={(f) => util.yasuo(f)}
-                    data={{ label: params.id, bucket: 'qingkong-home' }}
+                  action="http://public-api.rico.org.cn/file/upload"
+                  listType="picture-card"
+                  onChange={onChange}
+                  showUploadList={false}
+                  beforeUpload={(f) => util.yasuo(f)}
+                  data={{ label: params.id, bucket: 'qingkong-home' }}
                 >
                   {imageUrl ? (
-                      <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
+                    <img src={imageUrl} alt="avatar" style={{ width: '100%' }} />
                   ) : (
-                      '上传背景图片'
+                    '上传背景图片'
                   )}
                 </Upload>
               </ImgCrop>
             </div>
           ) : null}
         </ProForm.Group>
-        {/*{background}*/}
+        {/* {background} */}
         <p>内容文字颜色</p>
-        {/*<div className={'bg-zhanshi'} style={{ backgroundColor:background }}>*/}
+        {/* <div className={'bg-zhanshi'} style={{ backgroundColor:background }}> */}
 
-        {/*</div>*/}
-        <div style={{marginBottom:'20px'}}>
-          <SketchPicker
-              width={'300px'}
-              color={ background }
-              onChangeComplete={ handleChangeComplete }/>
+        {/* </div> */}
+        <div style={{ marginBottom: '20px' }}>
+          <SketchPicker width="300px" color={background} onChangeComplete={handleChangeComplete} />
         </div>
       </ProForm>
     </div>

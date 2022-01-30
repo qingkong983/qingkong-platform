@@ -1,5 +1,5 @@
 import { Navigate } from 'react-router-dom'
-import MainBox from '../components/MainBox/indexNew'
+import MainBox from '../components/MainBox'
 import Calendar from '../pages/Calendar'
 import CalendarCreateAndUpdate from '../pages/Calendar/CreateAndUpdate'
 

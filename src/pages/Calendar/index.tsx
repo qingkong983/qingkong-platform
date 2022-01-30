@@ -29,6 +29,7 @@ const Calendar: React.FC = () => {
       search: false,
       title: '内容',
       dataIndex: 'content',
+      ellipsis: true,
     },
     {
       search: false,
@@ -61,13 +62,13 @@ const Calendar: React.FC = () => {
       render(_, tableListItem) {
         return (
           <div>
-            <Button
+            <a
               onClick={() => {
                 history(`/calendar/${tableListItem.id}`)
               }}
             >
               查看
-            </Button>
+            </a>
             <Divider type="vertical" />
             <Popconfirm
               title="确认删除?"
@@ -83,7 +84,7 @@ const Calendar: React.FC = () => {
               okText="Yes"
               cancelText="No"
             >
-              <Button style={{ color: 'red' }}>删除</Button>
+              <a style={{ color: 'red' }}>删除</a>
             </Popconfirm>
           </div>
         )
