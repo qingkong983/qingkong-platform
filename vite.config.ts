@@ -55,10 +55,6 @@ export default defineConfig({
       plugins: [
         // commonjs(),
         externalGlobals({
-          react: "React",
-          "react-dom": "ReactDOM",
-          "antd": "antd",
-          "moment": "moment"
         }),
       ],
     },
